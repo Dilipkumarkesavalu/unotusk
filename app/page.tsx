@@ -1,9 +1,14 @@
+import { Navigation } from '@/features/navigation'
+
 export default function Home() {
   return (
-    <main>
-      {/* Milestone 2: Navigation */}
-      {/* Milestone 3: Hero */}
-      {/* Further sections pending Hero approval */}
-    </main>
+    <>
+      <Navigation />
+      <main>
+        {/* Milestone 3: Hero */}
+        {/* Further sections pending Hero approval */}
+        <div className="h-screen" />
+      </main>
+    </>
   )
 }
