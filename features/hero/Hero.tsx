@@ -1,5 +1,5 @@
-import { HeroScene } from './HeroScene'
+import { PrototypeSwitcher } from './prototypes/PrototypeSwitcher'
 
 export function Hero() {
-  return <HeroScene />
+  return <PrototypeSwitcher />
 }
