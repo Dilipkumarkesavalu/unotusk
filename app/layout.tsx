@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import { LenisProvider } from '@/lib/lenis'
+import { ScrollInit } from '@/components/ScrollInit'
 import './globals.css'
 
 const inter = Inter({
@@ -18,17 +19,21 @@ const youngSerif = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'UNOTUSK — The missing memory layer for AI.',
+  title: 'UNOTUSK — The Project Intelligence Engine',
   description:
-    'UNOTUSK gives AI the one thing it’s missing — your project’s memory. Every decision your team ever made. Every spec written after that reflects it.',
+    'Your project already knows. UNOTUSK makes it visible. Every decision your team ever made, reconstructed into intelligence AI can actually use.',
   metadataBase: new URL('https://unotusk.com'),
   openGraph: {
-    title: 'UNOTUSK — The missing memory layer for AI.',
-    description:
-      'UNOTUSK gives AI the one thing it’s missing — your project’s memory.',
+    title: 'UNOTUSK — The Project Intelligence Engine',
+    description: 'Your project already knows. UNOTUSK makes it visible.',
     siteName: 'UNOTUSK',
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'UNOTUSK — The Project Intelligence Engine',
+    description: 'Your project already knows. UNOTUSK makes it visible.',
   },
 }
 
@@ -43,6 +48,7 @@ export default function RootLayout({
       className={`${inter.variable} ${youngSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <ScrollInit />
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

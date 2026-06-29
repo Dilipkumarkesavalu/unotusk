@@ -2,34 +2,34 @@
 
 import { useEffect } from 'react'
 import Lenis from 'lenis'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-let lenisInstance: Lenis | null = null
-
-export function useLenis() {
-  return lenisInstance
-}
+gsap.registerPlugin(ScrollTrigger)
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Guarantee the page starts at top on every mount (belt-and-suspenders with ScrollInit)
+    window.scrollTo(0, 0)
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
 
-    lenisInstance = lenis
+    // Drive Lenis from GSAP's ticker so ScrollTrigger scrub works correctly
+    const onScroll = () => ScrollTrigger.update()
+    lenis.on('scroll', onScroll)
 
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    const rafId = requestAnimationFrame(raf)
+    const tickerFn = (time: number) => lenis.raf(time * 1000)
+    gsap.ticker.add(tickerFn)
+    gsap.ticker.lagSmoothing(0)
 
     return () => {
-      cancelAnimationFrame(rafId)
+      lenis.off('scroll', onScroll)
+      gsap.ticker.remove(tickerFn)
       lenis.destroy()
-      lenisInstance = null
     }
   }, [])
 

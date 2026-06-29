@@ -7,11 +7,25 @@ import { SITE } from '@/lib/constants'
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
+  // The CTA is the conclusion of the story — it must not appear until the
+  // visitor has travelled through the entire solution. Reveal it only once
+  // they reach the final stretch of the page (the CTA section).
+  const [showCTA, setShowCTA] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 32)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 32)
+      const doc = document.documentElement
+      const max = doc.scrollHeight - window.innerHeight
+      setShowCTA(max > 0 && window.scrollY / max > 0.9)
+    }
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   return (
@@ -19,7 +33,7 @@ export function Navigation() {
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         transition: 'background 0.5s ease, border-color 0.5s ease',
-        background: scrolled ? 'rgba(9,13,23,0.85)' : 'transparent',
+        background: scrolled ? 'rgba(11,16,32,0.88)' : 'transparent',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
       }}
@@ -40,17 +54,20 @@ export function Navigation() {
             width={180}
             height={180}
             priority
-            className="h-[44px] w-auto brightness-0 invert"
+            className="h-[64px] w-auto brightness-0 invert"
           />
         </Link>
 
-        {/* CTA */}
+        {/* CTA — only after the solution story has finished */}
         <Link
           href="#early-access"
+          aria-hidden={!showCTA}
+          tabIndex={showCTA ? undefined : -1}
           className={[
-            'group flex items-center gap-1.5',
+            'group flex min-h-[44px] items-center gap-1.5',
             'font-mono text-[11px] uppercase tracking-[0.18em]',
-            'text-[#CBC1B5]/70 transition-colors duration-300 hover:text-[#F5F3EF]',
+            'text-[#CBC1B5]/40 transition-all duration-500 hover:text-[#A07C4A]',
+            showCTA ? 'opacity-100' : 'pointer-events-none opacity-0',
           ].join(' ')}
         >
           <span>Join Lighthouse</span>

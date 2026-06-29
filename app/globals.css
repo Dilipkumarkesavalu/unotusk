@@ -3,12 +3,12 @@
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
   /* Colours */
-  --color-bg:           #090D17;
-  --color-surface:      #111827;
-  --color-text-primary: #F5F3EF;
-  --color-text-secondary: #CBC1B5;
-  --color-accent:       #A07C4A;
-  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-bg:             #0B1020;
+  --color-ocean:          #1E3A5F;
+  --color-text-primary:   #CBC1B5;
+  --color-text-secondary: rgba(203,193,181,0.62);
+  --color-accent:         #A07C4A;
+  --color-border:         rgba(255, 255, 255, 0.06);
 
   /* Typography */
   --font-display: var(--font-young-serif);
@@ -20,7 +20,6 @@
 
 @theme inline {
   --color-background:        var(--color-bg);
-  --color-surface:           var(--color-surface);
   --color-text-primary:      var(--color-text-primary);
   --color-text-secondary:    var(--color-text-secondary);
   --color-accent:            var(--color-accent);

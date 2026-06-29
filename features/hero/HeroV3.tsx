@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 // ── Vocabulary — real project memory language ─────────────────
 const VOCAB: string[] = [
@@ -262,11 +265,37 @@ export function HeroV3() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [frags.length])
 
+  // Scroll-scrub exit: as the Hero scrolls away, fade the whole section out.
+  // Fully reversible — scroll back up and the Hero reappears in its final state.
+  // Runs independently of the auto-play timeline so neither interferes with the other.
+  useEffect(() => {
+    if (!sectionRef.current) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            // Start fading when the hero's centre hits the viewport top
+            start: 'center top',
+            // Complete fade when the hero's bottom leaves the viewport top
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        }
+      )
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section
       ref={sectionRef}
       className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden"
-      style={{ background: '#090D17' }}
+      style={{ background: '#0B1020' }}
       aria-label="Hero"
     >
       {/* Film grain */}
@@ -298,7 +327,7 @@ export function HeroV3() {
         className="pointer-events-none absolute inset-0 z-10"
         style={{
           background:
-            'radial-gradient(ellipse 92% 88% at 50% 50%, transparent 28%, rgba(9,13,23,0.82) 100%)',
+            'radial-gradient(ellipse 92% 88% at 50% 50%, transparent 28%, rgba(11,16,32,0.82) 100%)',
         }}
         aria-hidden="true"
       />
@@ -312,7 +341,7 @@ export function HeroV3() {
           <span
             key={i}
             ref={(el) => { fragRefs.current[i] = el }}
-            className="absolute font-mono uppercase text-[#F5F3EF]"
+            className="absolute font-mono uppercase text-[#CBC1B5]"
             style={{
               left:          `${f.x}%`,
               top:           `${f.y}%`,
@@ -346,7 +375,7 @@ export function HeroV3() {
               style={{ background: '#A07C4A', opacity: 0.75 }}
             />
             <span className="font-mono text-[10px] uppercase tracking-[0.26em] text-[#A07C4A]/80">
-              Project Memory
+              Project Intelligence Layer
             </span>
           </div>
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#CBC1B5]/40">
@@ -364,7 +393,7 @@ export function HeroV3() {
         <div className="space-y-2 overflow-hidden">
           <span
             ref={line1Ref}
-            className="block text-[clamp(1.85rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.026em] text-[#F5F3EF]"
+            className="block text-[clamp(1.85rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.026em] text-[#CBC1B5]"
             style={{
               fontFamily: 'var(--font-young-serif), Georgia, serif',
               clipPath:   'inset(0 100% 0 0)',
@@ -385,7 +414,7 @@ export function HeroV3() {
         <div ref={ctaRef} style={{ opacity: 0 }}>
           <a
             href="#early-access"
-            className="group inline-flex items-center gap-2 border-b border-[#F5F3EF]/14 pb-px font-mono text-[11px] uppercase tracking-[0.14em] text-[#F5F3EF]/55 transition-colors duration-300 hover:border-[#F5F3EF]/28 hover:text-[#F5F3EF]"
+            className="group inline-flex items-center gap-2 border-b border-[#CBC1B5]/14 pb-px font-mono text-[11px] uppercase tracking-[0.14em] text-[#CBC1B5]/55 transition-colors duration-300 hover:border-[#CBC1B5]/28 hover:text-[#CBC1B5]"
           >
             <span>Request Early Access</span>
             <span
