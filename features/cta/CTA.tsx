@@ -39,15 +39,15 @@ export function CTA() {
           anticipatePin: 1,
           refreshPriority: 1,
           start: 'top top',
-          end: () => '+=' + 2000 * pinFactor(),
-          scrub: 2,
+          end: () => '+=' + 1220 * pinFactor(),
+          scrub: 1.2,
         },
       })
-        .fromTo(headRef.current,    { clipPath: H }, { clipPath: V, ease: 'none', duration: 2.0 }, 0.0)
-        .fromTo(bodyRef.current,    { opacity: 0 },  { opacity: 1, ease: 'none', duration: 1.3 }, 2.2)
-        .fromTo(promiseRef.current, { opacity: 0 },  { opacity: 1, ease: 'none', duration: 1.0 }, 3.4)
-        .fromTo(btnRef.current,     { opacity: 0 },  { opacity: 1, ease: 'none', duration: 1.0 }, 4.6)
-        .to({}, { duration: 3 }, 6.0)
+        .fromTo(headRef.current,    { clipPath: H }, { clipPath: V, ease: 'none', duration: 1.4 }, 0.0)
+        .fromTo(bodyRef.current,    { opacity: 0 },  { opacity: 1, ease: 'none', duration: 0.9 }, 1.6)
+        .fromTo(promiseRef.current, { opacity: 0 },  { opacity: 1, ease: 'none', duration: 0.7 }, 2.6)
+        .fromTo(btnRef.current,     { opacity: 0 },  { opacity: 1, ease: 'none', duration: 0.7 }, 3.4)
+        .to({}, { duration: 1.2 }, 4.3)
 
     }, containerRef)
 

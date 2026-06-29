@@ -86,16 +86,16 @@ export function Problem() {
           anticipatePin: 1,
           refreshPriority: 6,
           start: 'top top',
-          end:   () => '+=' + 3000 * pinFactor(),
-          scrub: 2,
+          end:   () => '+=' + 1800 * pinFactor(),
+          scrub: 1.2,
         },
       })
-        .fromTo(mask1Ref.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.5 }, 0.5)
-        .to({}, { duration: 1.0 }, 2.0)
-        .fromTo(mask2Ref.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.5 }, 3.0)
-        .to({}, { duration: 2.5 }, 4.5)
-        .fromTo([tL1.current, tL2.current], { opacity: 1 }, { opacity: 0.10, ease: 'power1.in', duration: 1.5 }, 7.0)
-        .to({}, { duration: 1.5 }, 8.5)
+        .fromTo(mask1Ref.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.1 }, 0.3)
+        .to({}, { duration: 0.5 }, 1.4)
+        .fromTo(mask2Ref.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.1 }, 1.9)
+        .to({}, { duration: 1.2 }, 3.0)
+        .fromTo([tL1.current, tL2.current], { opacity: 1 }, { opacity: 0.10, ease: 'power1.in', duration: 1.0 }, 4.2)
+        .to({}, { duration: 0.6 }, 5.4)
 
       // ── Chapter 2 — Statistics ───────────────────────────────────
       //
@@ -115,23 +115,23 @@ export function Problem() {
           anticipatePin: 1,
           refreshPriority: 5,
           start: 'top top',
-          end:   () => '+=' + 5500 * pinFactor(),
-          scrub: 2,
+          end:   () => '+=' + 2850 * pinFactor(),
+          scrub: 1.2,
         },
       })
-        .fromTo(s1Num.current,  { clipPath: HC }, { clipPath: V, ease: 'power2.out', duration: 2.0 }, 1.5)
-        .fromTo(s1Desc.current, { opacity: 0 },   { opacity: 1, ease: 'none', duration: 1.0 }, 3.5)
-        .fromTo(s1Src.current,  { opacity: 0 },   { opacity: 1, ease: 'none', duration: 0.7 }, 4.5)
+        .fromTo(s1Num.current,  { clipPath: HC }, { clipPath: V, ease: 'power2.out', duration: 1.4 }, 1.0)
+        .fromTo(s1Desc.current, { opacity: 0 },   { opacity: 1, ease: 'none', duration: 0.8 }, 2.2)
+        .fromTo(s1Src.current,  { opacity: 0 },   { opacity: 1, ease: 'none', duration: 0.6 }, 3.0)
         // ── HOLD: visitor reads 95% ──────────────────────────────
-        .fromTo(s1Num.current,  { clipPath: V },   { clipPath: HC, ease: 'power3.in',  duration: 1.0 }, 11.0)
-        .fromTo(s2Num.current,  { clipPath: HC },  { clipPath: V,  ease: 'power3.out', duration: 1.0 }, 11.5)
-        .fromTo(s1Desc.current, { opacity: 1 },    { opacity: 0,  ease: 'none', duration: 0.7 }, 11.0)
-        .fromTo(s2Desc.current, { opacity: 0 },    { opacity: 1,  ease: 'none', duration: 0.8 }, 12.0)
-        .fromTo(s1Src.current,  { opacity: 1 },    { opacity: 0,  ease: 'none', duration: 0.5 }, 11.0)
-        .fromTo(s2Src.current,  { opacity: 0 },    { opacity: 1,  ease: 'none', duration: 0.5 }, 12.0)
+        .fromTo(s1Num.current,  { clipPath: V },   { clipPath: HC, ease: 'power3.in',  duration: 0.8 }, 6.0)
+        .fromTo(s2Num.current,  { clipPath: HC },  { clipPath: V,  ease: 'power3.out', duration: 0.8 }, 6.4)
+        .fromTo(s1Desc.current, { opacity: 1 },    { opacity: 0,  ease: 'none', duration: 0.6 }, 6.0)
+        .fromTo(s2Desc.current, { opacity: 0 },    { opacity: 1,  ease: 'none', duration: 0.6 }, 6.8)
+        .fromTo(s1Src.current,  { opacity: 1 },    { opacity: 0,  ease: 'none', duration: 0.4 }, 6.0)
+        .fromTo(s2Src.current,  { opacity: 0 },    { opacity: 1,  ease: 'none', duration: 0.4 }, 6.8)
         // ── HOLD: visitor reads 0% ───────────────────────────────
         .to([s2Num.current, s2Desc.current, s2Src.current],
-          { opacity: 0, ease: 'none', duration: 1.0, stagger: 0.2 }, 18.5)
+          { opacity: 0, ease: 'none', duration: 0.8, stagger: 0.15 }, 9.5)
 
       // ── Chapter 3 — Punch ────────────────────────────────────────
       //
@@ -145,15 +145,15 @@ export function Problem() {
           anticipatePin: 1,
           refreshPriority: 4,
           start: 'top top',
-          end:   () => '+=' + 5000 * pinFactor(),
-          scrub: 2,
+          end:   () => '+=' + 2640 * pinFactor(),
+          scrub: 1.2,
         },
       })
-        .fromTo(pL1.current, { clipPath: H }, { clipPath: V, duration: 2 }, 0.0)
-        .fromTo(pL2.current, { clipPath: H }, { clipPath: V, duration: 2 }, 2.0)
-        .fromTo(pL3.current, { clipPath: H }, { clipPath: V, duration: 2 }, 4.0)
+        .fromTo(pL1.current, { clipPath: H }, { clipPath: V, duration: 1.4 }, 0.0)
+        .fromTo(pL2.current, { clipPath: H }, { clipPath: V, duration: 1.4 }, 1.4)
+        .fromTo(pL3.current, { clipPath: H }, { clipPath: V, duration: 1.4 }, 2.8)
         // ── HOLD: the cost of forgetting lands here ───────────────
-        .to({}, { duration: 10 }, 6.5)
+        .to({}, { duration: 4.0 }, 4.7)
 
       // ── Chapter 4 — Bridge ───────────────────────────────────────
       //
@@ -173,20 +173,20 @@ export function Problem() {
           anticipatePin: 1,
           refreshPriority: 3,
           start: 'top top',
-          end:   () => '+=' + 6500 * pinFactor(),
-          scrub: 2,
+          end:   () => '+=' + 3000 * pinFactor(),
+          scrub: 1.2,
         },
       })
-        .to({}, { duration: 1.0 }, 0.0)
-        .fromTo(bridgeMask.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.5 }, 1.0)
+        .to({}, { duration: 0.5 }, 0.0)
+        .fromTo(bridgeMask.current, { xPercent: 0 }, { xPercent: 110, ease: 'power2.out', duration: 1.1 }, 0.5)
         // ── HOLD: the turning point ───────────────────────────────
-        .to({}, { duration: 7.0 }, 2.5)
+        .to({}, { duration: 3.0 }, 1.6)
         .fromTo(bridgeT.current,
           { opacity: 1, filter: 'blur(0px)' },
-          { opacity: 0, filter: 'blur(4px)', ease: 'power2.in', duration: 2.0 },
-          9.5)
+          { opacity: 0, filter: 'blur(4px)', ease: 'power2.in', duration: 1.4 },
+          4.6)
         // ── Darkness: breath before the solution begins ───────────
-        .to({}, { duration: 8.0 }, 11.5)
+        .to({}, { duration: 3.0 }, 6.0)
 
     }, containerRef)
 

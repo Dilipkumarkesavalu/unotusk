@@ -334,7 +334,7 @@ export function What() {
         scrollTrigger: {
           trigger: megaRef.current, pin: true, anticipatePin: 1,
           refreshPriority: 2,
-          start: 'top top', end: () => '+=' + 10000 * pinFactor(), scrub: 1,
+          start: 'top top', end: () => '+=' + 5900 * pinFactor(), scrub: 0.7,
         },
       })
 
@@ -342,12 +342,12 @@ export function What() {
       // No wide-scatter hold: the words come straight in and build the shape,
       // chapter by chapter — trunk → body → head + ear — with a beat between
       // each so the growing silhouette is recognised before the next joins.
-      mega.to(vapourRef.current, { opacity: 1, ease: 'none', duration: 0.6 }, 0.0)
+      mega.to(vapourRef.current, { opacity: 1, ease: 'none', duration: 0.5 }, 0.0)
 
       const STAGE = [
-        { start: 0.6,  span: 2.0 },   // trunk — the first hint
-        { start: 3.6,  span: 2.6 },   // body
-        { start: 7.4,  span: 3.2 },   // head + ear — recognition completes
+        { start: 0.5,  span: 1.4 },   // trunk — the first hint
+        { start: 2.4,  span: 1.8 },   // body
+        { start: 4.6,  span: 2.2 },   // head + ear — recognition completes
       ]
       words.forEach((el, i) => {
         const st  = STAGE[stageOf[i]]
@@ -355,41 +355,40 @@ export function What() {
         const at  = st.start + (stageRank[i] / cnt) * st.span
         mega.to(el, {
           opacity: placed[i].op, x: 0, y: 0, rotate: 0, scale: 1,
-          ease: 'power2.out', duration: 1.4,
+          ease: 'power2.out', duration: 1.0,
         }, at)
       })
       // HOLD after trunk
-      mega.to({}, { duration: 1.0 }, 2.7)
+      mega.to({}, { duration: 0.6 }, 1.9)
       // HOLD after body
-      mega.to({}, { duration: 1.2 }, 6.3)
+      mega.to({}, { duration: 0.7 }, 4.2)
 
       // ── HOLD: completed typography favicon — the climax ───────────
-      // (head finishes ~10.6; the elephant holds until the dissolve at 17.8)
-      mega.to({}, { duration: 2.4 }, 11.0)
+      mega.to({}, { duration: 1.4 }, 6.8)
 
       // ── Letters dissolve into clean strokes → final clean favicon ──
-      mega.to(words, { opacity: 0, ease: 'power2.in', duration: 2.2 }, 17.8)
-      mega.to(faviconImgRef.current, { opacity: 0.82, ease: 'power1.out', duration: 2.2 }, 18.4)
+      mega.to(words, { opacity: 0, ease: 'power2.in', duration: 1.4 }, 9.0)
+      mega.to(faviconImgRef.current, { opacity: 0.82, ease: 'power1.out', duration: 1.4 }, 9.4)
 
       // ── HOLD: clean favicon — UNOTUSK's mark ──────────────────────
-      mega.to({}, { duration: 1.5 }, 21.0)
+      mega.to({}, { duration: 0.9 }, 11.2)
 
       // ── Favicon fades away, clearing the stage for the statement ──
       // (so the text never overlaps the icon — it lands on a clean field)
-      mega.to(faviconImgRef.current, { opacity: 0, ease: 'power2.in', duration: 1.5 }, 22.5)
+      mega.to(faviconImgRef.current, { opacity: 0, ease: 'power2.in', duration: 0.9 }, 12.5)
 
       // ── Reveal: the solution (on a clean background) ──────────────
-      mega.to(ps1.current, { clipPath: V, ease: 'none', duration: 1.5 }, 24.5)
-      mega.to(ps2.current, { clipPath: V, ease: 'none', duration: 1.5 }, 25.9)
-      mega.to(ps3.current, { clipPath: V, ease: 'none', duration: 1.5 }, 27.3)
+      mega.to(ps1.current, { clipPath: V, ease: 'none', duration: 1.0 }, 13.8)
+      mega.to(ps2.current, { clipPath: V, ease: 'none', duration: 1.0 }, 14.8)
+      mega.to(ps3.current, { clipPath: V, ease: 'none', duration: 1.0 }, 15.8)
       // HOLD — the solution lands
-      mega.to({}, { duration: 3.0 }, 29.1)
+      mega.to({}, { duration: 1.6 }, 17.0)
 
       // ── Reveal: closing line ──────────────────────────────────────
-      mega.to(psClose1.current, { clipPath: V, ease: 'none', duration: 1.5 }, 32.1)
-      mega.to(psClose2.current, { clipPath: V, ease: 'none', duration: 1.5 }, 33.5)
+      mega.to(psClose1.current, { clipPath: V, ease: 'none', duration: 1.0 }, 18.8)
+      mega.to(psClose2.current, { clipPath: V, ease: 'none', duration: 1.0 }, 19.9)
       // ── FINAL HOLD before the invitation ──────────────────────────
-      mega.to({}, { duration: 3.0 }, 35.5)
+      mega.to({}, { duration: 1.6 }, 21.1)
     }, containerRef)
 
     // This pinned trigger is created LATE (after async favicon load + packing).
