@@ -49,7 +49,7 @@ export function Navigation() {
           aria-label={SITE.name}
         >
           <Image
-            src="/logo.png.png"
+            src="/logo.png"
             alt={SITE.name}
             width={180}
             height={180}

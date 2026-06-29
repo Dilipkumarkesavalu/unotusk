@@ -1,3 +1,15 @@
 [build]
   command = "npm run build"
   publish = "out"
+
+# Baseline security headers. (A strict Content-Security-Policy is intentionally
+# omitted for now — the site relies heavily on inline styles, so a CSP needs a
+# staged report-only rollout before enforcing.)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"

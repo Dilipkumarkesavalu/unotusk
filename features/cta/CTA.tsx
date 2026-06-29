@@ -61,6 +61,7 @@ export function CTA() {
   return (
     <div
       ref={containerRef}
+      id="early-access"
       className="flex min-h-screen flex-col justify-center"
       style={{ padding: '0 7vw', background: '#0B1020', color: '#CBC1B5' }}
     >

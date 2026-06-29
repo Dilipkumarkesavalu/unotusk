@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   description:
     'Your project already knows. UNOTUSK makes it visible. Every decision your team ever made, reconstructed into intelligence AI can actually use.',
   metadataBase: new URL('https://unotusk.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'UNOTUSK — The Project Intelligence Engine',
     description: 'Your project already knows. UNOTUSK makes it visible.',
@@ -58,6 +61,27 @@ export default function RootLayout({
       className={`${inter.variable} ${youngSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: 'UNOTUSK',
+              applicationCategory: 'DeveloperApplication',
+              operatingSystem: 'Web',
+              url: 'https://unotusk.com',
+              description:
+                'Your project already knows. UNOTUSK makes it visible. Every decision your team ever made, reconstructed into intelligence AI can actually use.',
+              publisher: {
+                '@type': 'Organization',
+                name: 'UNOTUSK',
+                url: 'https://unotusk.com',
+                logo: 'https://unotusk.com/icon.png',
+              },
+            }),
+          }}
+        />
         <ScrollInit />
         <LenisProvider>{children}</LenisProvider>
       </body>

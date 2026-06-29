@@ -28,7 +28,7 @@ export function Footer() {
       >
         {/* Logo mark */}
         <img
-          src="/logo.png.png"
+          src="/logo.png"
           alt="UNOTUSK"
           style={{ height: 16, width: 'auto', opacity: 0.14, filter: 'brightness(10)' }}
         />
